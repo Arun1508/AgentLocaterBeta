@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agent search</title>
+</head>
+<body>
+<form action="" method="post">
+      {% csrf_token %}
+    <table>
+        <tr>
+            <td>
+                <input type="text" name="location" placeholder="Zipcode" list="dropdown">
+                {% if disZip != None %}
+                <datalist id="dropdown">
+                    {% for i in disZip %}
+                    <option value={{i.zipcode}}>{{i.zipcode}}</option>
+                    {% endfor %}
+                </datalist>
+                {% endif %}
+            </td>
+            <td>
+                  <button type="submit">Submit</button>
+            </td>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% if data != None %}
+    <table>
+        {% for i in data %}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.zipcode}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+</body>
+</html>
